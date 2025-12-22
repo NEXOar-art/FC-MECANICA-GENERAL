@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taller Martin Ataide - Diagnóstico Automotriz Computarizado y Mecánica Integral. Turnos online rápidos.">
+    <title>Taller Martin Ataide | Diagnóstico del Automotor</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Orbitron + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            blue: '#00D4FF',
+                            dark: '#0A0F1A',
+                            gray: '#1E293B',
+                            light: '#F8FAFC',
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(0, 212, 255, 0.5)',
+                        'glow': '0 0 30px rgba(0, 212, 255, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background: #0A0F1A; color: #E2E8F0; }
+        .glass { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(0, 212, 255, 0.2); }
+        .glow-text { text-shadow: 0 0 10px rgba(0, 212, 255, 0.7); }
+        .pulse-glow { animation: pulse-glow 3s infinite; }
+        @keyframes pulse-glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .fade-in-up { opacity: 0; transform: translateY(40px); animation: fadeInUp 1s ease-out forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .hover-glow { transition: all 0.4s; }
+        .hover-glow:hover { box-shadow: 0 0 25px rgba(0, 212, 255, 0.6); transform: translateY(-8px); }
+        /* Movimiento suave de parallax en la imagen de fondo */
+        .parallax-image {
+            transition: transform 0.3s ease-out; /* Transición suave */
+            will-change: transform; /* Optimización para rendimiento */
+        }
+        /* Efecto de zoom sutil y movimiento lateral al scroll */
+        @keyframes subtle-move {
+            0% { transform: translate(0, 0) scale(1.05); }
+            50% { transform: translate(5%, 5%) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1.05); }
+        }
+        .parallax-bg {
+            animation: subtle-move 20s ease-in-out infinite alternate; /* Movimiento sutil continuo */
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 top-0 glass border-b border-gray-700">
+        <div class="container mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-4 max-w-[50%]">
+                <a href="#" class="flex items-center gap-3">
+                    <div class="bg-primary-blue text-primary-dark p-3 rounded-lg flex-shrink-0">
+                        <i class="fa-solid fa-wrench text-2xl"></i>
+                    </div>
+                    <div class="truncate">
+                        <span class="block font-display font-bold text-2xl lg:text-3xl text-primary-blue tracking-wide uppercase">Taller Martin Ataide</span>
+                    </div>
+                </a>
+            </div>
+            <div class="flex items-center gap-6">
+                <div id="status-badge-desktop" class="hidden md:flex items-center px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wide bg-gray-800 border border-gray-700 ml-auto">
+                    <span id="status-dot-desktop" class="w-3 h-3 rounded-full mr-3"></span>
+                    <span id="status-text-desktop">Cargando...</span>
+                </div>
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#asesoramiento" class="text-gray-300 hover:text-primary-blue transition text-lg font-medium">
+                        Asesoramiento
+                    </a>
+                    <a href="#diagnostico" class="bg-primary-blue hover:bg-blue-500 text-primary-dark px-6 py-3 rounded-lg font-bold transition hover:shadow-neon uppercase text-base">
+                        Pre-Diagnóstico
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-sm font-bold uppercase bg-gray-800">Cargando estado...</div>
+    </nav>
+
+    <!-- Botón flotante "Pedir Turno" -->
+    <div class="fixed bottom-20 right-4 z-50 md:bottom-10 md:right-10 lg:bottom-20 lg:right-20">
+        <a href="#diagnostico" class="bg-primary-blue hover:bg-blue-500 text-primary-dark px-8 py-4 rounded-full font-bold shadow-neon transition transform hover:scale-105 flex items-center gap-3 hover:shadow-glow">
+            <i class="fa-solid fa-calendar-check text-xl"></i> Pedir Turno
+        </a>
+    </div>
+
+    <!-- HERO con imagen de fondo con movimiento suave -->
+    <header class="relative pt-32 pb-32 lg:pt-40 lg:pb-24 min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-primary-dark to-gray-900">
+        <div id="parallax-container" class="absolute inset-0">
+            <img id="parallax-img" src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop" alt="Motor futurista" class="parallax-image w-full h-full object-cover opacity-40 parallax-bg">
+            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-transparent"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div class="fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="inline-block bg-primary-blue/20 border border-primary-blue/50 text-primary-blue px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                        <i class="fa-solid fa-microchip mr-2"></i> Diagnóstico Avanzado
+                    </div>
+                </div>
+                <h1 class="font-display font-black text-5xl lg:text-7xl leading-tight glow-text main-title">
+                    CHEQUEO E HISTORIAL DE <br>MANTENIMIENTO DE TU VEHÍCULO
+                </h1>
+                <p class="text-gray-300 text-lg max-w-lg description-text">
+                    Tu auto emite señales, nosotros las decodificamos. Pre-carga síntomas y obtén diagnóstico preciso antes de llegar.
+                </p>
+                <div class="grid grid-cols-3 gap-6 pt-6 fade-in-up" style="animation-delay: 15s;">
+                    <div><span class="block text-3xl font-bold text-primary-blue"><span id="counter1" data-target="99">0</span>%</span><span class="text-xs text-gray-400">Precisión</span></div>
+                    <div><span class="block text-3xl font-bold text-primary-blue"><span id="counter2" data-target="-50">0</span>m</span><span class="text-xs text-gray-400">Tiempo ahorrado</span></div>
+                    <div><span class="block text-3xl font-bold text-primary-blue"><span id="counter3" data-target="8000">0</span>+</span><span class="text-xs text-gray-400">Casos resueltos</span></div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 pt-6 fade-in-up" style="animation-delay: 15.5s;">
+                    <a href="#diagnostico" class="bg-primary-blue text-primary-dark px-8 py-4 rounded font-bold uppercase tracking-wide hover:shadow-neon transition flex items-center justify-center gap-2 group hover-glow">
+                        Iniciar Pre-Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition"></i>
+                    </a>
+                    <a href="#asesoramiento" class="border border-gray-600 text-white px-8 py-4 rounded font-bold uppercase tracking-wide hover:bg-gray-800 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-book text-primary-blue"></i> Asesoramiento
+                    </a>
+                </div>
+            </div>
+            <div class="hidden lg:block relative fade-in-up" style="animation-delay: 16s;">
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1600&auto=format&fit=crop" alt="Técnico futurista" class="rounded-2xl shadow-2xl border border-gray-700 transform hover:scale-105 transition duration-500">
+            </div>
+        </div>
+    </header>
+
+    <!-- ASESORES -->
+    <section id="asesoramiento" class="py-24 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-display font-bold text-5xl text-primary-blue uppercase mb-4 glow-text">Centro de Asesoramiento</h2>
+                <p class="text-gray-400 max-w-3xl mx-auto">Detecta fallas tempranas y ahorra miles en reparaciones. Conoce las señales clave.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-glow transition">
+                    <img src="https://placehold.co/600x400/00D4FF/000?text=FRENOS" alt="Frenos" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-primary-blue uppercase">Mantenimiento Predictivo</span>
+                        <h3 class="font-bold text-xl text-white mb-3">Señales en Frenos</h3>
+                        <p class="text-gray-400 text-sm mb-4">Chillido o pedal esponjoso: pastillas o aire en circuito.</p>
+                        <a href="#diagnostico" class="text-primary-blue hover:text-blue-400 font-bold text-sm flex items-center gap-2">Revisar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-glow transition">
+                    <img src="https://placehold.co/600x400/1E293B/fff?text=BATERIA" alt="Batería" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-primary-blue uppercase">Mantenimiento Preventivo</span>
+                        <h3 class="font-bold text-xl text-white mb-3">Batería y Alternador</h3>
+                        <p class="text-gray-400 text-sm mb-4">Arranque lento o luces parpadeando: chequea voltaje.</p>
+                        <a href="#diagnostico" class="text-primary-blue hover:text-blue-400 font-bold text-sm flex items-center gap-2">Chequear <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-xl overflow-hidden hover-glow transition">
+                    <img src="https://placehold.co/600x400/00D4FF/000?text=FLUIDOS" alt="Fluidos" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-primary-blue uppercase">Consejos Rápidos</span>
+                        <h3 class="font-bold text-xl text-white mb-3">Fluidos Críticos</h3>
+                        <p class="text-gray-400 text-sm mb-4">Aceite, refrigerante y frenos: niveles bajos indican urgencia.</p>
+                        <a href="#diagnostico" class="text-primary-blue hover:text-blue-400 font-bold text-sm flex items-center gap-2">Service <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#diagnostico" class="inline-flex bg-primary-blue text-primary-dark font-bold py-3 px-8 rounded-full hover:shadow-neon transition uppercase tracking-wide">
+                    <i class="fa-solid fa-hand-pointer mr-2"></i> Pre-Diagnóstico Ahora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="py-24 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-display font-bold text-5xl text-white uppercase mb-4 glow-text">Servicios <span class="text-primary-blue">Integrales</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Soluciones completas para mantener tu vehículo en estado óptimo.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-8 rounded-xl hover-glow transition border-t-4 border-transparent hover:border-primary-blue">
+                    <i class="fa-solid fa-laptop-code text-5xl text-primary-blue mb-6"></i>
+                    <h3 class="font-bold text-2xl text-white mb-3">Diagnóstico Computarizado</h3>
+                    <p class="text-gray-400">Escaneo avanzado de ECU y sensores.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl hover-glow transition border-t-4 border-transparent hover:border-primary-blue">
+                    <i class="fa-solid fa-oil-can text-5xl text-primary-blue mb-6"></i>
+                    <h3 class="font-bold text-2xl text-white mb-3">Mecánica Ligera</h3>
+                    <p class="text-gray-400">Cambios de aceite, filtros y service.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl hover-glow transition border-t-4 border-transparent hover:border-primary-blue">
+                    <i class="fa-solid fa-circle-stop text-5xl text-primary-blue mb-6"></i>
+                    <h3 class="font-bold text-2xl text-white mb-3">Frenos</h3>
+                    <p class="text-gray-400">ABS, pastillas y discos.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl hover-glow transition border-t-4 border-transparent hover:border-primary-blue">
+                    <i class="fa-solid fa-car-burst text-5xl text-primary-blue mb-6"></i>
+                    <h3 class="font-bold text-2xl text-white mb-3">Suspensión</h3>
+                    <p class="text-gray-400">Amortiguadores y alineación.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl hover-glow transition border-t-4 border-transparent hover:border-primary-blue">
+                    <i class="fa-solid fa-snowflake text-5xl text-primary-blue mb-6"></i>
+                    <h3 class="font-bold text-2xl text-white mb-3">Climatización</h3>
+                    <p class="text-gray-400">Carga de gas y reparaciones.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl hover-glow transition border-t-4 border-transparent hover:border-primary-blue">
+                    <i class="fa-solid fa-bolt text-5xl text-primary-blue mb-6"></i>
+                    <h3 class="font-bold text-2xl text-white mb-3">Electricidad</h3>
+                    <p class="text-gray-400">Baterías y fallos eléctricos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="py-24 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-display font-bold text-5xl text-white uppercase glow-text">La Voz de Nuestros Clientes</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-4">Confianza basada en resultados reales.</p>
+            </div>
+            <div class="testimonial-carousel flex gap-8 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
+                <div class="testimonial-card bg-gray-800 p-8 rounded-xl border-t-4 border-primary-blue hover-glow transition flex-shrink-0 w-full md:w-1/3 snap-center">
+                    <div class="flex justify-between mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <i class="fa-solid fa-quote-right text-4xl text-gray-700"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">"Diagnóstico perfecto en minutos. Tecnología de punta."</p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/50x50/00D4FF/000?text=M" alt="Martín" class="rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-white">Martín P.</p>
+                            <p class="text-sm text-gray-500">Chevrolet Tracker</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-gray-800 p-8 rounded-xl border-t-4 border-primary-blue hover-glow transition flex-shrink-0 w-full md:w-1/3 snap-center">
+                    <div class="flex justify-between mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <i class="fa-solid fa-quote-right text-4xl text-gray-700"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">"Proceso rápido y transparente. Recomendado."</p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/50x50/00D4FF/000?text=A" alt="Alejandra" class="rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-white">Alejandra R.</p>
+                            <p class="text-sm text-gray-500">Renault Fluence</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-gray-800 p-8 rounded-xl border-t-4 border-primary-blue hover-glow transition flex-shrink-0 w-full md:w-1/3 snap-center">
+                    <div class="flex justify-between mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <i class="fa-solid fa-quote-right text-4xl text-gray-700"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">"Eficiencia y tecnología. Ideal para flotas."</p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/50x50/00D4FF/000?text=E" alt="Esteban" class="rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-white">Esteban C.</p>
+                            <p class="text-sm text-gray-500">Flota Utilitarios</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-gray-800 p-8 rounded-xl border-t-4 border-primary-blue hover-glow transition flex-shrink-0 w-full md:w-1/3 snap-center">
+                    <div class="flex justify-between mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <i class="fa-solid fa-quote-right text-4xl text-gray-700"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6">"Explicaron todo con reportes detallados."</p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/50x50/00D4FF/000?text=J" alt="Javier" class="rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-white">Javier M.</p>
+                            <p class="text-sm text-gray-500">Ford Focus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 mt-8">Desliza para más opiniones</p>
+        </div>
+    </section>
+
+    <!-- FORMULARIO -->
+    <section id="diagnostico" class="py-24 bg-gradient-to-b from-gray-900 to-primary-dark relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.1),transparent_50%)]"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/3">
+                    <h2 class="font-display font-bold text-5xl text-white mb-6 glow-text">ACELERADOR DE <br><span class="text-primary-blue">DIAGNÓSTICO</span></h2>
+                    <p class="text-gray-400 mb-8">Completa el formulario y nuestros técnicos preparan todo antes de tu llegada.</p>
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-gray-800 p-4 rounded text-primary-blue"><i class="fa-solid fa-stopwatch text-3xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white">Ahorro de Tiempo</h4>
+                                <p class="text-gray-400 text-sm">Salta la entrevista inicial.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-gray-800 p-4 rounded text-primary-blue"><i class="fa-solid fa-file-waveform text-3xl"></i></div>
+                            <div>
+                                <h4 class="font-bold text-white">Análisis Previo</h4>
+                                <p class="text-gray-400 text-sm">Preparamos herramientas específicas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-2/3 bg-gray-800 rounded-2xl shadow-2xl p-8">
+                    <form id="triageForm" class="space-y-8">
+                        <div class="border-b border-gray-700 pb-6">
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3"><span class="bg-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span> Datos del Vehículo</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <input type="text" id="inputVehicle" placeholder="Marca y Modelo" class="input-glow w-full bg-gray-900 border border-gray-700 p-4 rounded-lg outline-none" required>
+                                <input type="number" id="inputKm" placeholder="Kilometraje" class="input-glow w-full bg-gray-900 border border-gray-700 p-4 rounded-lg outline-none" required>
+                            </div>
+                        </div>
+                        <div class="border-b border-gray-700 pb-6">
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3"><span class="bg-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span> Síntomas</h3>
+                            <textarea id="inputSymptoms" rows="4" placeholder="Describe ruidos, olores, vibraciones..." class="input-glow w-full bg-gray-900 border border-gray-700 p-4 rounded-lg outline-none" required></textarea>
+                            <select id="inputContext" class="input-glow w-full bg-gray-900 border border-gray-700 p-4 rounded-lg outline-none mt-4">
+                                <option value="" disabled selected>Contexto de falla...</option>
+                                <optgroup label="FALLAS EN ARRANQUE">
+                                    <option value="no_arranca_gira">Gira pero no arranca</option>
+                                    <option value="no_arranca_nada">No da contacto</option>
+                                    <option value="arranca_lento">Arranque lento</option>
+                                </optgroup>
+                                <optgroup label="RENDIMIENTO">
+                                    <option value="falla_ralenti">Inestabilidad en ralentí</option>
+                                    <option value="pierde_potencia">Pérdida de potencia</option>
+                                    <option value="consumo_excesivo">Consumo alto</option>
+                                    <option value="humo_escape">Humo en escape</option>
+                                </optgroup>
+                                <optgroup label="RUIDOS">
+                                    <option value="ruido_frenar">Ruido al frenar</option>
+                                    <option value="ruido_direccion">Ruido al girar</option>
+                                    <option value="vibracion_alta">Vibración alta</option>
+                                    <option value="ruido_motor">Ruido motor</option>
+                                </optgroup>
+                                <optgroup label="TEMPERATURA">
+                                    <option value="levanta_temp">Se calienta</option>
+                                    <option value="perdida_fluido">Pérdida de fluido</option>
+                                </optgroup>
+                                <option value="falla_frio">Solo en frío</option>
+                                <option value="falla_caliente">Solo en caliente</option>
+                                <option value="falla_intermitente">Intermitente</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3"><span class="bg-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span> Contacto</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <input type="text" id="inputName" placeholder="Nombre" class="input-glow w-full bg-gray-900 border border-gray-700 p-4 rounded-lg outline-none" required>
+                                <input type="tel" id="inputPhone" placeholder="WhatsApp" class="input-glow w-full bg-gray-900 border border-gray-700 p-4 rounded-lg outline-none">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-primary-blue text-primary-dark font-bold uppercase text-xl py-5 rounded-lg hover:shadow-neon transition flex items-center justify-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-3xl"></i> Enviar a Taller Martin Ataide
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST + UBICACIÓN -->
+    <section class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-wrap justify-center gap-12 opacity-70 grayscale hover:grayscale-0 transition mb-16">
+                <i class="fa-brands fa-toyota text-5xl"></i>
+                <i class="fa-solid fa-car text-5xl"></i>
+                <i class="fa-brands fa-honda text-5xl"></i>
+                <i class="fa-solid fa-truck-pickup text-5xl"></i>
+            </div>
+            <div class="bg-gray-800 rounded-2xl p-10 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="text-left">
+                    <h3 class="font-display font-bold text-3xl text-white">¿Dónde estamos?</h3>
+                    <p class="text-gray-400 mb-4">Ven para validación final.</p>
+                    <div class="flex items-center gap-3 text-gray-300">
+                        <i class="fa-regular fa-clock text-primary-blue text-2xl"></i>
+                        <span>08:00-12:00 | 14:00-18:00 | Sáb-Dom Cerrado</span>
+                    </div>
+                </div>
+                <a href="https://maps.app.goo.gl/QQXb3VtUhUPmy1hB7" target="_blank" class="bg-primary-blue text-primary-dark px-8 py-4 rounded-lg font-bold hover:shadow-neon transition flex items-center gap-3">
+                    <i class="fa-solid fa-map-location-dot"></i> Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-primary-dark text-gray-500 py-12 text-center">
+        <div class="container mx-auto px-4">
+            <p class="mb-4 text-white font-display font-bold text-2xl glow-text">Taller Martin Ataide Diagnóstico del Automotor</p>
+            <p>&copy; 2025 Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- STICKY MOBILE CTA -->
+    <div class="fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700 p-4 md:hidden z-50 flex gap-4">
+        <a href="#asesoramiento" class="flex-1 bg-gray-900 text-white font-bold py-3 rounded text-center border border-gray-700">
+            <i class="fa-solid fa-book text-primary-blue mr-2"></i>Asesoramiento
+        </a>
+        <a href="#diagnostico" class="flex-[2] bg-primary-blue text-primary-dark font-bold py-3 rounded text-center uppercase shadow-neon">
+            Iniciar Diagnóstico
+        </a>
+    </div>
+
+    <!-- JAVASCRIPT (con parallax mejorado) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function updateDateTime() { return new Date(); }
+            function checkStatus() {
+                const now = updateDateTime();
+                const hours = now.getHours();
+                const day = now.getDay();
+                const isMorningOpen = (hours >= 8 && hours < 12);
+                const isAfternoonOpen = (hours >= 14 && hours < 18);
+                const isWorkingHour = isMorningOpen || isAfternoonOpen;
+                const isWorkingDay = day !== 0;
+                const isOpen = isWorkingDay && isWorkingHour;
+                const dotDesktop = document.getElementById('status-dot-desktop');
+                const textDesktop = document.getElementById('status-text-desktop');
+                const badgeDesktop = document.getElementById('status-badge-desktop');
+                const barMobile = document.getElementById('status-bar-mobile');
+                if (isOpen) {
+                    dotDesktop.className = 'w-2 h-2 rounded-full mr-2 bg-primary-blue pulse-glow';
+                    textDesktop.textContent = 'Abierto Ahora';
+                    textDesktop.classList.add('text-primary-blue');
+                    barMobile.textContent = '🟢 Abierto Ahora';
+                    barMobile.className = 'md:hidden w-full py-1 text-center text-xs font-bold uppercase tracking-widest text-white bg-primary-blue/30';
+                } else {
+                    dotDesktop.className = 'w-2 h-2 rounded-full mr-2 bg-red-500';
+                    textDesktop.textContent = 'Cerrado';
+                    textDesktop.classList.add('text-red-400');
+                    barMobile.textContent = '🔴 Cerrado';
+                    barMobile.className = 'md:hidden w-full py-1 text-center text-xs font-bold uppercase tracking-widest text-white bg-red-900/30';
+                }
+            }
+            function animateCounter(id, start, target, duration) {
+                const obj = document.getElementById(id);
+                let current = start;
+                const range = target - start;
+                const increment = range / (duration / 16);
+                const step = () => {
+                    current += increment;
+                    obj.textContent = target < 0 ? Math.ceil(current) : Math.floor(current);
+                    if ((target > start && current < target) || (target < start && current > target)) {
+                        requestAnimationFrame(step);
+                    } else {
+                        obj.textContent = target < 0 ? Math.abs(target) : target;
+                    }
+                };
+                requestAnimationFrame(step);
+            }
+            function startCounters() {
+                animateCounter('counter1', 0, 99, 1000);
+                animateCounter('counter2', 0, -50, 1200);
+                animateCounter('counter3', 0, 8000, 1500);
+            }
+            const inputs = document.querySelectorAll('.input-glow');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.length > 2) this.classList.add('input-valid'); else this.classList.remove('input-valid', 'input-invalid');
+                });
+                input.addEventListener('blur', function() {
+                    if (this.value.length < 3 && this.hasAttribute('required')) this.classList.add('input-invalid');
+                });
+            });
+            document.getElementById('triageForm')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparando...';
+                btn.classList.add('opacity-75');
+                const vehicle = document.getElementById('inputVehicle').value || 'N/A';
+                const km = document.getElementById('inputKm').value || 'N/A';
+                const symptoms = document.getElementById('inputSymptoms').value || 'N/A';
+                const context = document.getElementById('inputContext').options[document.getElementById('inputContext').selectedIndex].text || 'No especificado';
+                const name = document.getElementById('inputName').value || 'N/A';
+                const phone = document.getElementById('inputPhone').value || 'N/A';
+                const message = `¡¡Hola Taller Martin Ataide!!\nContacto: ${name}\nTel: ${phone}\nVehículo: ${vehicle}\nKm: ${km}\nSíntomas: ${symptoms}\nContexto: ${context}\nSolicito turno.`;
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=+541159353987&text=${encodeURIComponent(message)}`;
+                setTimeout(() => {
+                    window.open(whatsappUrl, '_blank');
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Enviado!';
+                    btn.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar a Taller Martin Ataide';
+                        btn.classList.remove('bg-green-600', 'opacity-75');
+                        e.target.reset();
+                    }, 3000);
+                }, 1000);
+            });
+            // Parallax mejorado con movimiento suave y zoom
+            const parallaxImg = document.getElementById('parallax-img');
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY * 0.3; // Velocidad de parallax
+                parallaxImg.style.transform = `translateY(${scrollY}px) scale(1.05)`;
+            });
+            checkStatus();
+            setInterval(checkStatus, 60000);
+            startCounters();
+            document.querySelectorAll('.fade-in-up').forEach((el, i) => el.style.animationDelay = `${i * 0.2}s`);
+        });
+    </script>
+</body>
+</html>
