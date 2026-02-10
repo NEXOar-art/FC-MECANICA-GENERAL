@@ -75,16 +75,13 @@
 <body class="antialiased relative">
     <!-- NAVBAR -->
     <nav class="fixed w-full z-50 top-0 glass border-b border-gray-700">
-        <div class="container mx-auto px-4 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3 md:gap-4">
-                <a href="#" class="flex flex-col sm:flex-row items-center gap-2 md:gap-3">
-                    <div class="bg-primary-blue text-primary-dark p-2 md:p-3 rounded-lg flex-shrink-0">
-                        <i class="fa-solid fa-wrench text-xl md:text-2xl"></i>
-                    </div>
-                    <span class="block font-display font-bold text-xl md:text-3xl text-primary-blue tracking-wide uppercase">TALLER DE ELECTROMECANICA JS</span>
-                </a>
-            </div>
-            <div class="flex items-center gap-4 md:gap-6">
+        <div class="container mx-auto px-4 h-20 flex items-center relative">
+            <!-- Título centrado en móvil, alineado a la izquierda en desktop -->
+            <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 font-display font-bold text-lg sm:text-2xl md:text-3xl text-primary-blue tracking-wide uppercase text-center md:text-left">
+                TALLER DE ELECTROMECANICA JS
+            </a>
+            <!-- Contenido derecho (status desktop, links desktop y redes siempre visibles) -->
+            <div class="ml-auto flex items-center gap-4 md:gap-6">
                 <div id="status-badge-desktop" class="hidden md:flex items-center px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wide bg-gray-800 border border-gray-700">
                     <span id="status-dot-desktop" class="w-2 md:w-3 h-2 md:h-3 rounded-full mr-2 md:mr-3"></span>
                     <span id="status-text-desktop">Cargando...</span>
@@ -97,8 +94,7 @@
                         Pre-Diagnóstico
                     </a>
                 </div>
-                <!-- Redes sociales (visibles en móvil y desktop, siempre a la derecha) -->
-                <div class="flex items-center gap-3 md:gap-5 ml-auto">
+                <div class="flex items-center gap-3 md:gap-5">
                     <a href="https://www.instagram.com/electromecanicajs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-300 hover:text-primary-blue text-xl md:text-2xl transition-all hover:scale-110">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
@@ -532,6 +528,7 @@
     </script>
 </body>
 </html>
+
 
 
 
