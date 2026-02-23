@@ -265,7 +265,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- los otros 3 testimonios iguales que el original -->
                 <div class="testimonial-card bg-gray-800 p-6 md:p-8 rounded-xl border-t-4 border-primary-blue hover-glow transition flex-shrink-0 w-4/5 md:w-1/3 snap-center">
                     <div class="flex justify-between mb-4">
                         <div class="text-yellow-400 text-lg md:text-xl">
@@ -348,9 +347,14 @@
                     <form id="triageForm" class="space-y-6 md:space-y-8">
                         <div class="border-b border-gray-700 pb-4 md:pb-6">
                             <h3 class="text-lg md:text-xl font-bold text-white mb-4 md:mb-6 flex items-center gap-3"><span class="bg-primary-blue text-primary-dark w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs md:text-sm">1</span> Datos del Vehículo</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                                 <input type="text" id="inputVehicle" placeholder="Marca y Modelo" class="input-glow w-full bg-gray-900 border border-gray-700 p-3 md:p-4 rounded-lg outline-none text-sm md:text-base" required>
                                 <input type="number" id="inputKm" placeholder="Kilometraje" class="input-glow w-full bg-gray-900 border border-gray-700 p-3 md:p-4 rounded-lg outline-none text-sm md:text-base" required>
+                                <select id="inputFuelType" class="input-glow w-full bg-gray-900 border border-gray-700 p-3 md:p-4 rounded-lg outline-none text-sm md:text-base" required>
+                                    <option value="" disabled selected>Tipo de combustible...</option>
+                                    <option value="Naftero">Naftero (Gasolina)</option>
+                                    <option value="Diesel">Diesel</option>
+                                </select>
                             </div>
                         </div>
                         <div class="border-b border-gray-700 pb-4 md:pb-6">
@@ -415,7 +419,7 @@
                     <p class="text-gray-400 mb-3 md:mb-4 text-base md:text-lg">Ven para validación final.</p>
                     <div class="flex items-center gap-2 md:gap-3 text-gray-300 text-sm md:text-base">
                         <i class="fa-regular fa-clock text-primary-blue text-xl md:text-2xl"></i>
-                        <span>Lunes a Sabado 09:00-13:00 | 14:00-18:00 | Sabado Cerrado | Domingo Cerrado</span>
+                        <span>Lunes a Sabado 09:00-12:00 | 13:00-19:30 | Domingo Cerrado</span>
                     </div>
                 </div>
                 <a href="https://maps.app.goo.gl/J4PwLfPiSgyicQz26" target="_blank" class="bg-primary-blue text-primary-dark px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold hover:shadow-neon transition flex items-center gap-2 md:gap-3 text-sm md:text-base">
@@ -511,11 +515,12 @@
                 btn.classList.add('opacity-75');
                 const vehicle = document.getElementById('inputVehicle').value || 'N/A';
                 const km = document.getElementById('inputKm').value || 'N/A';
+                const fuelType = document.getElementById('inputFuelType').value || 'N/A';
                 const symptoms = document.getElementById('inputSymptoms').value || 'N/A';
                 const context = document.getElementById('inputContext').options[document.getElementById('inputContext').selectedIndex].text || 'No especificado';
                 const name = document.getElementById('inputName').value || 'N/A';
                 const phone = document.getElementById('inputPhone').value || 'N/A';
-                const message = `🚗 *¡Hola TALLER MECANICO JUAN CARLOS! 👋*\n\n📛 *Contacto:* ${name}\n📱 *Tel:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣️ *Km:* ${km}\n\n⚠️ *Síntomas:* ${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno urgente! 💨*`;
+                const message = `🚗 *¡Hola TALLER MECANICO JUAN CARLOS! 👋*\n\n📛 *Contacto:* ${name}\n📱 *Tel:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣️ *Km:* ${km}\n⛽ *Combustible:* ${fuelType}\n\n⚠️ *Síntomas:* ${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno urgente! 💨*`;
                 const whatsappUrl = `https://api.whatsapp.com/send?phone=+541163078975&text=${encodeURIComponent(message)}`;
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank');
@@ -541,6 +546,7 @@
     </script>
 </body>
 </html>
+
 
 
 
