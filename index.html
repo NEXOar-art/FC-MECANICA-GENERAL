@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JB TALLER ELECTROMECANICO INTEGRAL - Diagnóstico Automotriz Computarizado y Mecánica Integral. Turnos online rápidos.">
-    <title>JB TALLER ELECTROMECANICO INTEGRAL  | Diagnóstico del Automotor</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="TALLER MECANICO JUAN CARLOS - Diagnóstico Automotriz Computarizado y Mecánica Integral. Turnos online rápidos.">
+    <title>TALLER MECANICO JUAN CARLOS | Diagnóstico del Automotor</title>
+    
+    <!-- Tailwind CSS CDN + Supresor del aviso -->
+    <script>
+        (function() {
+            const originalWarn = console.warn;
+            console.warn = function(...args) {
+                if (typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com')) return;
+                originalWarn.apply(console, args);
+            };
+        })();
+    </script>
+    <script src="https://cdn.tailwindcss.com/3.4.14"></script>
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -59,7 +71,6 @@
         .input-glow:focus { border-color: #00D4FF; box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
         .input-valid { border-color: #22C55E !important; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2322c55e'%3e%3cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 0.8rem center; background-size: 1.5em; }
         .input-invalid { border-color: #EF4444 !important; }
-        /* Responsividad adicional para mobile */
         @media (max-width: 640px) {
             .text-5xl { font-size: 2.5rem; line-height: 1.1; }
             .text-7xl { font-size: 3rem; line-height: 1.1; }
@@ -73,14 +84,13 @@
     </style>
 </head>
 <body class="antialiased relative">
+
     <!-- NAVBAR -->
     <nav class="fixed w-full z-50 top-0 glass border-b border-gray-700">
         <div class="container mx-auto px-4 h-20 flex items-center relative">
-            <!-- Título centrado en móvil, alineado a la izquierda en desktop -->
             <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 font-display font-bold text-lg sm:text-2xl md:text-3xl text-primary-blue tracking-wide uppercase text-center md:text-left">
-                JB TALLER ELECTROMECANICO INTEGRAL 
+                TALLER MECANICO JUAN CARLOS
             </a>
-            <!-- Contenido derecho (status desktop, links desktop y redes siempre visibles) -->
             <div class="ml-auto flex items-center gap-4 md:gap-6">
                 <div id="status-badge-desktop" class="hidden md:flex items-center px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wide bg-gray-800 border border-gray-700">
                     <span id="status-dot-desktop" class="w-2 md:w-3 h-2 md:h-3 rounded-full mr-2 md:mr-3"></span>
@@ -94,21 +104,18 @@
                         Pre-Diagnóstico
                     </a>
                 </div>
-                <div class="flex items-center gap-3 md:gap-5">
-                    <a href="https://www.instagram.com/tallermecanicoppr/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-300 hover:text-primary-blue text-xl md:text-2xl transition-all hover:scale-110">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </div>
             </div>
         </div>
         <div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-gray-800">Cargando estado...</div>
     </nav>
-    <!-- Botón flotante "Pedir Turno" mejor posicionado y visible en móviles -->
+
+    <!-- Botón flotante -->
     <div class="fixed bottom-24 md:bottom-10 right-4 z-50">
         <a href="#diagnostico" class="bg-primary-blue hover:bg-blue-500 text-primary-dark px-6 py-3 md:px-8 md:py-4 rounded-full font-bold shadow-neon transition transform hover:scale-105 flex items-center gap-2 md:gap-3 hover:shadow-glow text-sm md:text-base">
             <i class="fa-solid fa-calendar-check text-lg md:text-xl"></i> Pedir Turno
         </a>
     </div>
+
     <!-- HERO -->
     <header class="relative pt-24 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-24 min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-primary-dark to-gray-900">
         <div id="parallax-container" class="absolute inset-0">
@@ -147,6 +154,7 @@
             </div>
         </div>
     </header>
+
     <!-- ASESORES -->
     <section id="asesoramiento" class="py-16 md:py-24 bg-gray-900">
         <div class="container mx-auto px-4">
@@ -190,6 +198,7 @@
             </div>
         </div>
     </section>
+
     <!-- SERVICIOS -->
     <section class="py-16 md:py-24 bg-gray-900">
         <div class="container mx-auto px-4">
@@ -231,6 +240,7 @@
             </div>
         </div>
     </section>
+
     <!-- TESTIMONIOS -->
     <section class="py-16 md:py-24 bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-4">
@@ -255,6 +265,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- los otros 3 testimonios iguales que el original -->
                 <div class="testimonial-card bg-gray-800 p-6 md:p-8 rounded-xl border-t-4 border-primary-blue hover-glow transition flex-shrink-0 w-4/5 md:w-1/3 snap-center">
                     <div class="flex justify-between mb-4">
                         <div class="text-yellow-400 text-lg md:text-xl">
@@ -307,6 +318,7 @@
             <p class="text-center text-gray-500 mt-6 md:mt-8 text-sm md:text-base">Desliza para más opiniones</p>
         </div>
     </section>
+
     <!-- FORMULARIO -->
     <section id="diagnostico" class="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-primary-dark relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.1),transparent_50%)]"></div>
@@ -380,13 +392,14 @@
                             </div>
                         </div>
                         <button type="submit" class="w-full bg-primary-blue text-primary-dark font-bold uppercase text-lg md:text-xl py-4 md:py-5 rounded-lg hover:shadow-neon transition flex items-center justify-center gap-3">
-                            <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i> Enviar a JB TALLER ELECTROMECANICO INTEGRAL 
+                            <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i> Enviar a TALLER MECANICO JUAN CARLOS
                         </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- TRUST + UBICACIÓN -->
     <section class="py-16 md:py-20 bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-4 text-center">
@@ -402,22 +415,24 @@
                     <p class="text-gray-400 mb-3 md:mb-4 text-base md:text-lg">Ven para validación final.</p>
                     <div class="flex items-center gap-2 md:gap-3 text-gray-300 text-sm md:text-base">
                         <i class="fa-regular fa-clock text-primary-blue text-xl md:text-2xl"></i>
-                        <span>Lunes a Sabado 09:00-12:00 | 13:00-19:30 | Domingo Cerrado</span>
+                        <span>Lunes a Sabado 09:00-13:00 | 14:00-18:00 | Sabado Cerrado | Domingo Cerrado</span>
                     </div>
                 </div>
-                <a href="https://maps.app.goo.gl/owsUTNak2vKbE7AV9" target="_blank" class="bg-primary-blue text-primary-dark px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold hover:shadow-neon transition flex items-center gap-2 md:gap-3 text-sm md:text-base">
+                <a href="https://maps.app.goo.gl/J4PwLfPiSgyicQz26" target="_blank" class="bg-primary-blue text-primary-dark px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold hover:shadow-neon transition flex items-center gap-2 md:gap-3 text-sm md:text-base">
                     <i class="fa-solid fa-map-location-dot"></i> Google Maps
                 </a>
             </div>
         </div>
     </section>
+
     <!-- FOOTER -->
     <footer class="bg-primary-dark text-gray-500 py-8 md:py-12 text-center">
         <div class="container mx-auto px-4">
-            <p class="mb-3 md:mb-4 text-white font-display font-bold text-xl md:text-2xl glow-text">JB TALLER ELECTROMECANICO INTEGRAL Diagnóstico del Automotor</p>
+            <p class="mb-3 md:mb-4 text-white font-display font-bold text-xl md:text-2xl glow-text">TALLER MECANICO JUAN CARLOS Diagnóstico del Automotor</p>
             <p class="text-sm md:text-base">&copy; 2025 Todos los derechos reservados.</p>
         </div>
     </footer>
+
     <!-- STICKY MOBILE CTA -->
     <div class="fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700 p-4 md:hidden z-50 flex gap-4">
         <a href="#asesoramiento" class="flex-1 bg-gray-900 text-white font-bold py-3 rounded text-center border border-gray-700 text-sm">
@@ -427,7 +442,8 @@
             Iniciar Diagnóstico
         </a>
     </div>
-    <!-- JAVASCRIPT con emojis en el mensaje de WhatsApp -->
+
+    <!-- JAVASCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             function updateDateTime() { return new Date(); }
@@ -499,15 +515,14 @@
                 const context = document.getElementById('inputContext').options[document.getElementById('inputContext').selectedIndex].text || 'No especificado';
                 const name = document.getElementById('inputName').value || 'N/A';
                 const phone = document.getElementById('inputPhone').value || 'N/A';
-                const message = `🚗 *¡Hola JB TALLER ELECTROMECANICO INTEGRAL! 👋*\n\n📛 *Contacto:* ${name}\n📱 *Tel:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣️ *Km:* ${km}\n\n⚠️ *Síntomas:* ${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno urgente! 💨*`;
-                const whatsappUrl = `https://api.whatsapp.com/send?phone=+543484366352&text=${encodeURIComponent(message)}`;
+                const message = `🚗 *¡Hola TALLER MECANICO JUAN CARLOS! 👋*\n\n📛 *Contacto:* ${name}\n📱 *Tel:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣️ *Km:* ${km}\n\n⚠️ *Síntomas:* ${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno urgente! 💨*`;
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=+541163078975&text=${encodeURIComponent(message)}`;
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank');
                     btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Enviado! 🎉';
                     btn.classList.add('bg-green-600');
                     setTimeout(() => {
-                        btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar a JB TALLER ELECTROMECANICO INTEGRAL
-';
+                        btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar a TALLER MECANICO JUAN CARLOS';
                         btn.classList.remove('bg-green-600', 'opacity-75');
                         e.target.reset();
                     }, 3000);
@@ -526,7 +541,6 @@
     </script>
 </body>
 </html>
-
 
 
 
