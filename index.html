@@ -276,6 +276,35 @@
             transform: translateY(-3px);
         }
         
+        /* Botón de reseñas - estilo especial dorado */
+        .btn-review {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #0A0F1A;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s ease;
+        }
+        
+        .btn-review::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(255,255,255,0.15) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-review:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.45), 0 0 30px rgba(255, 165, 0, 0.3);
+        }
+        
+        .btn-review:hover::after {
+            opacity: 1;
+        }
+        
         /* Scrollbar personalizado */
         ::-webkit-scrollbar {
             width: 8px;
@@ -405,12 +434,17 @@
         <div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-gray-900/80 border-t border-white/10">Verificando estado...</div>
     </nav>
 
-    <!-- Botón flotante premium -->
-    <div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float">
+    <!-- Botones flotantes premium -->
+    <div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float flex flex-col gap-3">
         <a href="#diagnostico" class="btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
             <i class="fa-solid fa-calendar-check text-lg"></i> 
             <span class="hidden xs:inline">Pedir Turno</span>
             <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <!-- Botón flotante de reseñas -->
+        <a href="https://maps.app.goo.gl/EoAcs1GQ6UMAWfTN7" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
+            <i class="fa-solid fa-star text-lg"></i> 
+            <span class="hidden xs:inline">Deja tu Reseña</span>
         </a>
     </div>
 
@@ -908,9 +942,15 @@
                         </div>
                     </div>
                 </div>
-                <a href="https://maps.app.goo.gl/EoAcs1GQ6UMAWfTN7" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
-                    <i class="fa-solid fa-map-location-dot text-lg"></i> Ver en Google Maps
-                </a>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="https://maps.app.goo.gl/EoAcs1GQ6UMAWfTN7" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
+                        <i class="fa-solid fa-map-location-dot text-lg"></i> Ver en Google Maps
+                    </a>
+                    <!-- BOTÓN DE RESEÑAS -->
+                    <a href="https://maps.app.goo.gl/EoAcs1GQ6UMAWfTN7" target="_blank" rel="noopener noreferrer" class="btn-review px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
+                        <i class="fa-solid fa-star text-lg"></i> Deja tu Reseña
+                    </a>
+                </div>
             </div>
             
             <!-- Badge de garantía -->
@@ -929,11 +969,18 @@
                     <p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight">FC MECANICA GENERAL</p>
                     <p class="text-sm">Diagnóstico Automotriz Profesional</p>
                 </div>
-                <!-- Redes sociales: WhatsApp + Instagram + TikTok -->
-                <div class="flex items-center gap-5">
+                <!-- Redes sociales + botón de reseñas -->
+                <div class="flex items-center gap-4">
                     <a href="#" class="text-gray-400 hover:text-primary-cyan transition text-lg"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="https://www.instagram.com/fc_mecanicageneral/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-cyan transition text-lg"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://www.tiktok.com/@fcmecanicagral?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn50Voc7j2c38sbf8nXOoGunD6eya1zTX4CbfgKkuzYxIam9se0ZJwJv8q2xc_aem_kzyPjSxU4LBmbCUItyX76A" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-cyan transition text-lg"><i class="fa-brands fa-tiktok"></i></a>
+                    <!-- Separador -->
+                    <span class="w-px h-6 bg-white/20"></span>
+                    <!-- Botón de reseñas en footer -->
+                    <a href="https://maps.app.goo.gl/EoAcs1GQ6UMAWfTN7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-cyan hover:text-yellow-400 transition text-sm font-semibold group">
+                        <i class="fa-solid fa-star group-hover:scale-110 transition-transform"></i>
+                        <span class="hidden sm:inline">Reseñas</span>
+                    </a>
                 </div>
             </div>
             <div class="border-t border-white/10 mt-8 pt-6 text-center text-sm">
@@ -980,37 +1027,28 @@
             function checkStatus() {
                 const now = new Date();
                 const hours = now.getHours();
-                const day = now.getDay(); // 0 = Domingo
+                const day = now.getDay();
                 
-                // Horarios: Lunes a Sábado 9-12 y 14-19:30
                 const isMorningOpen = (hours >= 9 && hours < 12);
                 const isAfternoonOpen = (hours >= 14 && hours < 19.5);
                 const isWorkingHour = isMorningOpen || isAfternoonOpen;
-                const isWorkingDay = day >= 1 && day <= 6; // Lunes a Sábado
+                const isWorkingDay = day >= 1 && day <= 6;
                 const isOpen = isWorkingDay && isWorkingHour;
                 
-                // Elementos desktop
                 const dotDesktop = document.getElementById('status-dot-desktop');
                 const textDesktop = document.getElementById('status-text-desktop');
-                
-                // Elementos mobile
                 const barMobile = document.getElementById('status-bar-mobile');
                 
                 if (isOpen) {
-                    // Estado ABIERTO
                     dotDesktop.className = 'status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-cyan';
                     textDesktop.textContent = 'Abierto Ahora';
                     textDesktop.className = 'text-primary-cyan font-semibold';
-                    
                     barMobile.textContent = '🟢 Abierto Ahora - Atención Inmediata';
                     barMobile.className = 'md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-cyan/20 to-primary-blue/20';
                 } else {
-                    // Estado CERRADO
                     dotDesktop.className = 'w-2 h-2 rounded-full mr-2.5 bg-gray-500';
                     textDesktop.textContent = 'Cerrado';
                     textDesktop.className = 'text-gray-400';
-                    
-                    // Mostrar próximo horario de apertura
                     let nextOpen = '';
                     if (day === 0) {
                         nextOpen = 'Abre Lunes 09:00';
@@ -1019,7 +1057,6 @@
                     } else {
                         nextOpen = 'Reabre 14:00';
                     }
-                    
                     barMobile.textContent = `🔴 Cerrado - ${nextOpen}`;
                     barMobile.className = 'md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-gray-300 bg-gray-900/80';
                 }
@@ -1034,7 +1071,7 @@
                 const step = (timestamp) => {
                     if (!startTimestamp) startTimestamp = timestamp;
                     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
                     
                     const value = Math.floor(easeProgress * (target - start) + start);
                     obj.textContent = Math.abs(value);
@@ -1049,7 +1086,6 @@
             }
             
             function startCounters() {
-                // Iniciar animaciones cuando estén visibles
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -1065,7 +1101,7 @@
                 if (statsSection) observer.observe(statsSection);
             }
             
-            // Validación de inputs en tiempo real
+            // Validación de inputs
             const inputs = document.querySelectorAll('.input-modern');
             inputs.forEach(input => {
                 input.addEventListener('input', function() {
@@ -1090,12 +1126,10 @@
                 const btn = e.target.querySelector('button[type="submit"]');
                 const originalBtnContent = btn.innerHTML;
                 
-                // Estado de carga
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando solicitud...';
                 btn.classList.add('opacity-80', 'cursor-not-allowed');
                 btn.disabled = true;
                 
-                // Recopilar datos
                 const vehicle = document.getElementById('inputVehicle').value || 'No especificado';
                 const km = document.getElementById('inputKm').value || 'No especificado';
                 const fuelType = document.getElementById('inputFuelType').value || 'No especificado';
@@ -1105,21 +1139,16 @@
                 const name = document.getElementById('inputName').value || 'Cliente';
                 const phone = document.getElementById('inputPhone').value || 'No proporcionado';
                 
-                // Mensaje para WhatsApp con el nuevo nombre FC MECANICA GENERAL
                 const message = `🚗 *¡Hola FC MECANICA GENERAL!* 👋\n\n📛 *Cliente:* ${name}\n📱 *Contacto:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣️ *Kilometraje:* ${km} km\n⛽ *Combustible:* ${fuelType}\n\n⚠️ *Síntomas reportados:*\n${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno para diagnóstico profesional.* 💨`;
                 
-                // URL de WhatsApp con el número actualizado
                 const whatsappUrl = `https://api.whatsapp.com/send?phone=+542213194351&text=${encodeURIComponent(message)}`;
                 
-                // Simular procesamiento y redirigir
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
                     
-                    // Feedback visual de éxito
                     btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Solicitud Enviada! ✅';
                     btn.classList.add('bg-green-600');
                     
-                    // Resetear formulario después de 3 segundos
                     setTimeout(() => {
                         btn.innerHTML = originalBtnContent;
                         btn.classList.remove('opacity-80', 'cursor-not-allowed', 'bg-green-600');
@@ -1132,7 +1161,7 @@
                 }, 1200);
             });
             
-            // Efecto parallax suave en hero
+            // Efecto parallax
             const parallaxImg = document.getElementById('parallax-img');
             if (parallaxImg) {
                 window.addEventListener('scroll', () => {
@@ -1159,10 +1188,9 @@
             
             // Inicialización
             checkStatus();
-            setInterval(checkStatus, 60000); // Revisar cada minuto
+            setInterval(checkStatus, 60000);
             startCounters();
             
-            // Animaciones de entrada con stagger
             document.querySelectorAll('.fade-in-up').forEach((el, i) => {
                 el.style.animationDelay = `${0.1 + i * 0.12}s`;
             });
@@ -1187,6 +1215,7 @@
     </script>
 </body>
 </html>
+
 
 
 
